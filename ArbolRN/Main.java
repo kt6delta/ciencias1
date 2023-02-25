@@ -7,7 +7,7 @@ public class Main {
   public static void main(String[] args) {
     Random random = new Random();
     Arbol Arbolito = new Arbol();
-    int datos[]={21, 28, 15, 8, 2, 18, 19, 6, 0, 26, 21, 17, 30, 7, 13, 25, 16, 5, 32};
+    int datos[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14};
     for (int i = 0; i < datos.length; i++) {
       Arbolito.insertar(datos[i]);
       //Arbolito.insertar(random.nextInt(56));
@@ -15,12 +15,12 @@ public class Main {
     //Arbolito.eliminar(0);
     Arbolito.recorrer(Recorrido.POSTORDER);//Left, Right, Nodo
     System.out.println();
-    Arbolito.recorrer(Recorrido.INORDER); //Left, Nodo, Right
+    //Arbolito.recorrer(Recorrido.INORDER); //Left, Nodo, Right
     System.out.println();
-    Arbolito.recorrer(Recorrido.PREORDER);//Nodo, Left,Right
+    //Arbolito.recorrer(Recorrido.PREORDER);//Nodo, Left,Right
     System.out.println();
-    Arbolito.recorrer(Recorrido.HOJAS);
+    //Arbolito.recorrer(Recorrido.HOJAS);
     System.out.println();
-    System.out.println(Arbolito.buscar(5));
+    //System.out.println(Arbolito.buscar(5));
   }
 }
