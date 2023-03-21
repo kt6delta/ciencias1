@@ -60,7 +60,7 @@ def maxCandies(m, n, candies):
     j = 0
     # Inicializar la cantidad máxima de dulces recolectados
     max_candies = 0
-    vacia = np.zeros((n, m))
+    vacia = np.zeros((m,n))
 
     for mover in range(m*n):
         # Encontrar el valor máximo en la matriz candies
