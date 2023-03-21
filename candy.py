@@ -52,18 +52,48 @@ Sample Output
 17
 """
 # resolver con divide y venceras
+import numpy as np
+
 def maxCandies(m, n, candies):
-    if m == 1:
-        return sum(candies[0])
-    elif n == 1:
-        return sum(candies[i][0] for i in range(m))
-    else:
-        return max(
-            maxCandies(m-1, n, candies[:m-1]) 
-            +max(candies[m-1][i] for i in range(n)),maxCandies(m, n-1, candies)
-            +max(candies[i][n-1] for i in range(m)),maxCandies(m-1, n-1, candies[:m-1]) 
-            +max(candies[m-1][i] for i in range(n-1))
-        )
+    max_val = 0
+    i = 0
+    j = 0
+    # Inicializar la cantidad máxima de dulces recolectados
+    max_candies = 0
+    vacia = np.zeros((n, m))
+
+    for mover in range(m*n):
+        # Encontrar el valor máximo en la matriz candies
+        max_val=np.amax(candies)
+        i,j=np.unravel_index(np.argmax(candies), (m,n))
+        # la celda actual contiene el valor máximo, recolectar los dulces
+        max_candies = max_candies + candies[i][j]
+        # elimina rectángulo alrededor de ella
+        candies[i][j] = 0
+        if j+1 < n:  # ancho
+            for k in range(j+1, j+2):
+                candies[i][k] = 0
+        if j-1 >= 0:
+            for k in range(j-1, j):
+                candies[i][k] = 0
+        if i+1 < m:  # alto
+            for k in range(i+1, i+2):
+                for l in range(0, n, 1):
+                    candies[k][l] = 0
+        if i-1 >= 0:
+            for k in range(i-1, i):
+                for l in range(0, n, 1):
+                    candies[k][l] = 0
+
+        # saber si la matriz todo tiene valor 0
+        for k in range(m):
+            for l in range(n):
+                if candies[k][l] != 0:
+                    vacia[k][l]=1
+                else:
+                    vacia[k][l]=0
+        if np.sum(vacia) == 0:
+            return max_candies
 
 
 if __name__ == '__main__':
