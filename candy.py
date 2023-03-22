@@ -98,25 +98,19 @@ def maxCandies(m, n, candies):
 
 if __name__ == '__main__':
     result = []
-    stop = False
-    m = 1
-    n = 1
-    while stop == False:
-        tamaño = input()
-        m, n = tamaño.split(" ")
-        n = int(n)
-        m = int(m)
+    while True:
+        # Leer las dimensiones de la matriz
+        m, n = map(int, input().split())
         if m == 0 and n == 0:
-            stop = True
-        else:
-            candies = []
-            # el contenido de las cajas son los arreiglos
-            for i in range(m):
-                candies.append(input().split(" "))
-            # convierte en numeros enteros
-            for i in range(m):
-                for j in range(n):
-                    candies[i][j] = int(candies[i][j])
+            break
+
+        # Leer la matriz de dulces
+        candies = []
+        for i in range(m):
+            row = list(map(int, input().split()))
+            candies.append(row)
+
+        # Resolver el caso y imprimir el resultado
             result.append(maxCandies(m, n, candies))
     for a in result:
         print(a)
