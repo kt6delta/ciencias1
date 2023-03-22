@@ -62,7 +62,7 @@ def maxCandies(m, n, candies):
     max_candies = 0
     vacia = np.zeros((m,n))
 
-    for mover in range(m*n):
+    while True:
         # Encontrar el valor máximo en la matriz candies
         max_val=np.amax(candies)
         i,j=np.unravel_index(np.argmax(candies), (m,n))
