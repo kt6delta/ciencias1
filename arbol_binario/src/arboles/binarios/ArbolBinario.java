@@ -2,7 +2,7 @@ package arboles.binarios;
 
 import arboles.Arbol;
 import arboles.Nodo;
-
+//Recorrido infijo
 /**
  *
  * @author KIKE
@@ -13,4 +13,5 @@ public abstract class ArbolBinario <T> extends Arbol<T> {
             ((NodoBinario)raiz).recorridoInfijo();
         }
     }
+    
 }

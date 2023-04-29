@@ -1,5 +1,6 @@
 package main;
 
+//aplcacion del arbol, en un edificio
 public class Edificio implements Comparable<Edificio> {
 	
 	private int pisos;

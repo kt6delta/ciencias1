@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import arboles.ordenamiento.NodoOrdenamientoB;
 
+//datos del nodo, sirve para imprimir el arbol
 public abstract class Nodo <T>{
 	
 	protected T dato;
