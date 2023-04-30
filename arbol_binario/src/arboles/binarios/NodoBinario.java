@@ -47,31 +47,4 @@ public abstract class NodoBinario <T> extends Nodo {
 			System.out.println(this.toString());
 	  } 
 	
-	  // busqueda de un nodo
-	  public NodoBinario buscarNodo(T dato) {
-		if (dato.equals(this.dato)) {
-		  return this;
-		} else {
-		  if (((Comparable) dato).compareTo(this.dato) > 0) {
-			if (this.getNodosHijos().get(1) != null) {
-			  return ((NodoBinario) this.getNodosHijos().get(1)).buscarNodo(dato);
-			} else {
-			  return null;
-			}
-		  } else {
-			if (this.getNodosHijos().get(0) != null) {
-			  return ((NodoBinario) this.getNodosHijos().get(0)).buscarNodo(dato);
-			} else {
-			  return null;
-			}
-		  }
-		}
-	  }
-	  //funcion que elimina un nodo
-	  public void eliminarNodo(T dato) {
-		Nodo<T> nodo = buscarNodo(dato);
-		if (nodo != null) {
-		  nodo.setDato(null);
-		}
-	  }
 }

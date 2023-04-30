@@ -31,18 +31,27 @@ public class NodoOrdenamientoB<T extends Comparable> extends NodoBinario {
   }
 
   //funcion que muestra el arbol en notacion prefija y posfija
+
+  public String toString() {
+    if (this.getDato() == null) {
+      return "borrado";
+    } else {
+      return (
+        "Pisos: " +
+        (((Edificio) this.getDato())).getPisos() +
+        ", Area: " +
+        (((Edificio) this.getDato())).getArea() +
+        ", Localidad: " +
+        (((Edificio) this.getDato())).getLocalidad()
+      );
+    }
+  }
+
   public void ArbolInfijo() {
     if (getNodosHijos().get(0) != null) {
       ((NodoOrdenamientoB) getNodosHijos().get(0)).ArbolInfijo();
     }
-    System.out.println(
-      "Pisos: " +
-      (((Edificio) this.getDato())).getPisos() +
-      ", Area: " +
-      (((Edificio) this.getDato())).getArea() +
-      ", Localidad: " +
-      (((Edificio) this.getDato())).getLocalidad()
-    );
+    System.out.println(this.toString());
 
     if (getNodosHijos().get(1) != null) {
       ((NodoOrdenamientoB) getNodosHijos().get(1)).ArbolInfijo();
@@ -56,42 +65,36 @@ public class NodoOrdenamientoB<T extends Comparable> extends NodoBinario {
     if (getNodosHijos().get(1) != null) {
       ((NodoOrdenamientoB) getNodosHijos().get(1)).ArbolInfijo();
     }
-	System.out.println(
-		"Pisos: " +
-		(((Edificio) this.getDato())).getPisos() +
-		", Area: " +
-		(((Edificio) this.getDato())).getArea() +
-		", Localidad: " +
-		(((Edificio) this.getDato())).getLocalidad()
-	  );
+    System.out.println(this.toString());
   }
 
-  //funcion que busca un nodo
-  public Nodo<T> ArbolbuscarNodo(T dato) {
-    if (dato.compareTo(this.dato) == 0) {
+  public NodoOrdenamientoB buscarNodo(T dato) {
+    if (dato.equals(this.dato)) {
       return this;
-    } else if (dato.compareTo(this.dato) > 0) {
-      if (this.getNodosHijos().get(1) != null) {
-        return (
-          (NodoOrdenamientoB) this.getNodosHijos().get(1)
-        ).ArbolbuscarNodo(dato);
-      } else {
-        return null;
-      }
     } else {
-      if (this.getNodosHijos().get(0) != null) {
-        return (
-          (NodoOrdenamientoB) this.getNodosHijos().get(0)
-        ).ArbolbuscarNodo(dato);
+      if (((Comparable) dato).compareTo(this.dato) > 0) {
+        if (this.getNodosHijos().get(1) != null) {
+          return ((NodoOrdenamientoB) this.getNodosHijos().get(1)).buscarNodo(
+              dato
+            );
+        } else {
+          return null;
+        }
       } else {
-        return null;
+        if (this.getNodosHijos().get(0) != null) {
+          return ((NodoOrdenamientoB) this.getNodosHijos().get(0)).buscarNodo(
+              dato
+            );
+        } else {
+          return null;
+        }
       }
     }
   }
 
   //funcion que elimina un nodo
   public void eliminarNodo(T dato) {
-    Nodo<T> nodo = ArbolbuscarNodo(dato);
+    Nodo<T> nodo = buscarNodo(dato);
     if (nodo != null) {
       nodo.setDato(null);
     }
